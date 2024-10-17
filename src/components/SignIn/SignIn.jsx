@@ -1,18 +1,13 @@
 
 import React, { useContext } from "react";
 import { FaEnvelope, FaLock, } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialIcon from "../SocialIcon/SocialIcon";
 import { AuthContext } from "../providers/AuthProvider";
 
-
-
-
-
 const SignIn = () => {
-
     const { createSignIn } = useContext(AuthContext);
-
+    const navigate = useNavigate()
     const handleSignIn = (e) => {
         e.preventDefault()
         const email = e.target.email.value
@@ -21,6 +16,7 @@ const SignIn = () => {
             .then(result => {
                 console.log(result.user);
                 e.target.reset();
+                navigate('/')
             }).catch(err => {
                 console.error(err);
             })

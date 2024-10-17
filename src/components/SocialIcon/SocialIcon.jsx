@@ -2,8 +2,10 @@ import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from
 import React from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { app } from '../../firebase/firebase.init';
+import { useNavigate } from 'react-router-dom';
 
 const SocialIcon = () => {
+    const navigate = useNavigate()
     const auth = getAuth(app)
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -13,6 +15,7 @@ const SocialIcon = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 console.log(result.user);
+                navigate('/')
             })
             .catch(err => {
                 console.log(err);
@@ -24,6 +27,7 @@ const SocialIcon = () => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 console.log(result);
+                navigate('/')
             })
             .catch(err => {
                 console.log(err);
